@@ -4,9 +4,9 @@ An app to track your baby's routine.
 
 ## Tech Stack - Frontend
 
+- Vite
 - React
 - TypeScript
-- Vite
 - SCSS
 
 ## Tech Stack - Backend
