@@ -1,20 +1,13 @@
 import type { Activity } from "../../../../shared/types/activity";
-import { useEffect, useState } from "react";
 import { ActivityItem } from "../../components/Activity";
 import { AddActivityForm } from "../../components/AddActivityForm";
-import { getActivities } from "../../services/activityService";
+import { useHomeData } from "../../hooks/useHomeData";
 
 export function Home() {
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const { activities, loading, error } = useHomeData();
 
-  useEffect(() => {
-    async function loadActivities() {
-      const data = await getActivities();
-      setActivities(data);
-    }
-
-    loadActivities();
-  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <>

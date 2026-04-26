@@ -1,18 +1,27 @@
 import Button from "@mui/material/Button";
-import { useState, type ChangeEvent } from "react";
+import { useContext, useState } from "react";
 
 import {
   ACTIVITY_OPTIONS,
   type ActivityType,
 } from "../../../../shared/types/activity";
 import { isValidActivity } from "../../../../shared/utils/utils";
-import { createActivity } from "../../services/activityService";
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
+import { activitiesService } from "../../services/activity.service";
+import { AppContext } from "../../context/AppContext";
 
 export function AddActivityForm() {
   const [selected, setSelected] = useState<ActivityType>("FEED");
+  const { setActivities } = useContext(AppContext);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = (event.target as HTMLInputElement).value;
 
     if (isValidActivity(value)) {
       setSelected(value);
@@ -20,40 +29,35 @@ export function AddActivityForm() {
   };
 
   return (
-    <form>
-      <fieldset>
-        <legend>Select the type of activity:</legend>
-
+    <FormControl>
+      <FormLabel id="demo-controlled-radio-buttons-group">
+        Select the type of activity:
+      </FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-controlled-radio-buttons-group"
+        name="controlled-radio-buttons-group"
+        value={selected}
+        onChange={handleChange}
+      >
         {ACTIVITY_OPTIONS.map((option) => (
-          <label key={option} style={{ marginRight: "10px" }}>
-            <input
-              type="radio"
-              name="activity"
-              value={option}
-              checked={selected === option}
-              onChange={handleChange}
-            />
-            {option}
-          </label>
+          <FormControlLabel value={option} control={<Radio />} label={option} />
         ))}
-
-        <p>
-          Selected: <strong>{selected}</strong>
-        </p>
-      </fieldset>
+      </RadioGroup>
 
       <div>
         <Button
           variant="contained"
-          onClick={() => {
-            createActivity({
+          onClick={async () => {
+            const newActivity = await activitiesService.create({
               type: selected,
             });
+
+            setActivities((prev) => [...prev, newActivity]);
           }}
         >
           Add Activity
         </Button>
       </div>
-    </form>
+    </FormControl>
   );
 }
