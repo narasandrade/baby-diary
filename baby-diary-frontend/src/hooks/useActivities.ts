@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { activitiesService } from "../services/activity.service";
-import { AppContext } from "../context/AppContext";
+import { useActivitiesContext } from "./useActivitiesContext";
 
 export function useActivities() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { activities, setActivities } = useContext(AppContext);
+  const { activities, setActivities } = useActivitiesContext();
 
   useEffect(() => {
     async function fetchActivities() {

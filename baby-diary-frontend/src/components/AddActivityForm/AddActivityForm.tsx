@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import {
   ACTIVITY_OPTIONS,
@@ -15,11 +15,11 @@ import {
   Typography,
 } from "@mui/material";
 import { activitiesService } from "../../services/activity.service";
-import { AppContext } from "../../context/AppContext";
+import { useActivitiesContext } from "../../hooks/useActivitiesContext";
 
 export function AddActivityForm() {
   const [selected, setSelected] = useState<ActivityType>("FEED");
-  const { setActivities } = useContext(AppContext);
+  const { setActivities } = useActivitiesContext();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;

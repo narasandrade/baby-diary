@@ -1,7 +1,7 @@
 import { createContext, type Dispatch, type SetStateAction } from "react";
-import type { Activity } from "../../../shared/types/activity";
+import type { Activity } from "../../../../shared/types/activity";
 
-export const AppContext = createContext<{
+export const ActivitiesContext = createContext<{
   activities: Activity[];
   setActivities: Dispatch<SetStateAction<Activity[]>>;
 }>({

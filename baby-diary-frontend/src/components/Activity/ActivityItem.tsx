@@ -46,7 +46,7 @@ export function ActivityItem(activity: Activity) {
           </Typography>
         </div>
         <div>
-          <DeleteActivityDialogButton id={activity._id} />
+          <DeleteActivityButton id={activity._id} />
         </div>
       </CardContent>
     </Card>
