@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {  
   await ActivityModel.findByIdAndDelete(req.params.id);
 
-  res.json({ message: "Activity deleted" });
+  res.json({ message: "Activity deleted successfully" });
 });
 
 export default router;

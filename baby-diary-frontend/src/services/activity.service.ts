@@ -20,6 +20,8 @@ export const activitiesService = {
     return createdActivity;
   },
   async delete(_id: string) {
-    await api.delete(`/activities/${_id}`);
+    const { data } = await api.delete(`/activities/${_id}`);
+
+    return data;
   },
 };
