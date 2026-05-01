@@ -12,6 +12,7 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  Typography,
 } from "@mui/material";
 import { activitiesService } from "../../services/activity.service";
 import { AppContext } from "../../context/AppContext";
@@ -30,6 +31,9 @@ export function AddActivityForm() {
 
   return (
     <FormControl>
+      <Typography gutterBottom variant="h4">
+        Add New Activity
+      </Typography>
       <FormLabel id="demo-controlled-radio-buttons-group">
         Select the type of activity:
       </FormLabel>
