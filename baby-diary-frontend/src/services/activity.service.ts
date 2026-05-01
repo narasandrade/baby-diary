@@ -14,7 +14,7 @@ export const activitiesService = {
 
     return data;
   },
-  async create(data: Omit<Activity, "id" | "createdAt" | "updatedAt">) {
+  async create(data: Omit<Activity, "_id" | "createdAt" | "updatedAt">) {
     const { data: createdActivity } = await api.post("/activities", data);
 
     return createdActivity;
