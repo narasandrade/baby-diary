@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const activities = await ActivityModel.find();
+  const activities = await ActivityModel.find().sort('-createdAt');;
 
   res.json(activities);
 });

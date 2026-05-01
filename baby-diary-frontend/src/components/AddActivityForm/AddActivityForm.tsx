@@ -44,7 +44,12 @@ export function AddActivityForm() {
         onChange={handleChange}
       >
         {ACTIVITY_OPTIONS.map((option) => (
-          <FormControlLabel value={option} control={<Radio />} label={option} />
+          <FormControlLabel
+            key={option}
+            value={option}
+            control={<Radio />}
+            label={option}
+          />
         ))}
       </RadioGroup>
 
@@ -56,7 +61,7 @@ export function AddActivityForm() {
               type: selected,
             });
 
-            setActivities((prev) => [...prev, newActivity]);
+            setActivities((prev) => [newActivity, ...prev]);
           }}
         >
           Add Activity
