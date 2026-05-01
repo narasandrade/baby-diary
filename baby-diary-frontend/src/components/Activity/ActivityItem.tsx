@@ -1,13 +1,15 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import type { Activity } from "../../../../shared/types/activity";
-import { DeleteActivityDialogButton } from "./DeleteActivityDialogButton";
+import { DeleteActivityButton } from "./DeleteActivityButton";
 
 export function ActivityItem(activity: Activity) {
   const { type, createdAt } = activity;
   const activityTime = new Date(createdAt);
 
   const displayDate =
-    activityTime.getDate() +
+    (activityTime.getDate() < 10
+      ? "0" + activityTime.getDate()
+      : activityTime.getDate()) +
     "/" +
     (activityTime.getMonth() < 10
       ? "0" + (activityTime.getMonth() + 1)
