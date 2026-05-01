@@ -19,4 +19,7 @@ export const activitiesService = {
 
     return createdActivity;
   },
+  async delete(_id: string) {
+    await api.delete(`/activities/${_id}`);
+  },
 };
