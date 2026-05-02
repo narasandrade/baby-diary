@@ -16,16 +16,40 @@ import {
 } from "@mui/material";
 import { activitiesService } from "../../../services/activity.service";
 import { useActivitiesContext } from "../../../hooks/useActivitiesContext";
+import { useNotificationContext } from "../../../hooks/useNotificationContext";
 
 export function AddActivityForm() {
   const [selected, setSelected] = useState<ActivityType>("FEED");
   const { setActivities } = useActivitiesContext();
+  const { setNotify } = useNotificationContext();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;
 
     if (isValidActivity(value)) {
       setSelected(value);
+    }
+  };
+
+  const handleAddActivity = async () => {
+    try {
+      const newActivity = await activitiesService.create({
+        type: selected,
+      });
+
+      setActivities((prev) => [newActivity, ...prev]);
+      setNotify({
+        open: true,
+        message: "Activity added successfully!",
+        severity: "success",
+      });
+    } catch (error) {
+      setNotify({
+        open: true,
+        message: "Failed to add activity. Please try again.",
+        severity: "error",
+      });
+      console.log("Error adding activity:", error);
     }
   };
 
@@ -54,16 +78,7 @@ export function AddActivityForm() {
       </RadioGroup>
 
       <div>
-        <Button
-          variant="contained"
-          onClick={async () => {
-            const newActivity = await activitiesService.create({
-              type: selected,
-            });
-
-            setActivities((prev) => [newActivity, ...prev]);
-          }}
-        >
+        <Button variant="contained" onClick={handleAddActivity}>
           Add Activity
         </Button>
       </div>

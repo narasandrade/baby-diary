@@ -25,8 +25,6 @@ export function DeleteActivityButton({ id }: { id: string }) {
 
       setOpenConfirmationDialog(false);
 
-      console.log("Activity deleted successfully:", res);
-
       setNotify({
         open: true,
         message: res.message,
