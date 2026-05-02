@@ -11,24 +11,29 @@ export function Home() {
   if (error) return <p>{error}</p>;
 
   return (
-    <>
-      <section>
-        <Typography gutterBottom variant="h4">
-          Activities
-        </Typography>
+    <div
+      style={{ display: "grid", gridTemplateColumns: "1fr 20rem", gap: "2rem" }}
+    >
+      <main style={{ display: "flex", justifyContent: "center" }}>
+        <div>
+          <Typography gutterBottom variant="h4">
+            Activities
+          </Typography>
 
-        {activities.length === 0 ? (
-          <p>No activities recorded yet.</p>
-        ) : (
-          <section>
-            {activities.map((activity: Activity) => (
-              <ActivityItem key={activity._id} {...activity} />
-            ))}
-          </section>
-        )}
-
+          {activities.length === 0 ? (
+            <p>No activities recorded yet.</p>
+          ) : (
+            <section>
+              {activities.map((activity: Activity) => (
+                <ActivityItem key={activity._id} {...activity} />
+              ))}
+            </section>
+          )}
+        </div>
+      </main>
+      <aside>
         <AddActivityForm />
-      </section>
-    </>
+      </aside>
+    </div>
   );
 }
