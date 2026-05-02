@@ -16,7 +16,15 @@ export function ActivityItem(activity: Activity) {
       : activityTime.getMonth() + 1) +
     "/" +
     activityTime.getFullYear();
-  const displayTime = activityTime.getHours() + ":" + activityTime.getMinutes();
+
+  const displayTime =
+    (activityTime.getHours() < 10
+      ? "0" + activityTime.getHours()
+      : activityTime.getHours()) +
+    ":" +
+    (activityTime.getMinutes() < 10
+      ? "0" + activityTime.getMinutes()
+      : activityTime.getMinutes());
 
   return (
     <Card
