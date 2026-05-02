@@ -4,8 +4,8 @@ import { useState } from "react";
 import {
   ACTIVITY_OPTIONS,
   type ActivityType,
-} from "../../../../shared/types/activity";
-import { isValidActivity } from "../../../../shared/utils/utils";
+} from "../../../../../shared/types/activity";
+import { isValidActivity } from "../../../../../shared/utils/utils";
 import {
   FormControl,
   FormControlLabel,
@@ -14,8 +14,8 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
-import { activitiesService } from "../../services/activity.service";
-import { useActivitiesContext } from "../../hooks/useActivitiesContext";
+import { activitiesService } from "../../../services/activity.service";
+import { useActivitiesContext } from "../../../hooks/useActivitiesContext";
 
 export function AddActivityForm() {
   const [selected, setSelected] = useState<ActivityType>("FEED");

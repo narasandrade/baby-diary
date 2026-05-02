@@ -1,6 +1,6 @@
 import { Card, CardContent, Typography } from "@mui/material";
-import type { Activity } from "../../../../shared/types/activity";
-import { DeleteActivityButton } from "./DeleteActivityButton";
+import type { Activity } from "../../../../../shared/types/activity";
+import { DeleteActivityButton } from "../DeleteActivityButton/DeleteActivityButton";
 
 export function ActivityItem(activity: Activity) {
   const { type, createdAt } = activity;

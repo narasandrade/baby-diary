@@ -1,8 +1,7 @@
 import { Typography } from "@mui/material";
 import type { Activity } from "../../../../shared/types/activity";
-import { ActivityItem } from "../../components/Activity";
-import { AddActivityForm } from "../../components/AddActivityForm";
 import { useHomeData } from "../../hooks/useHomeData";
+import { ActivityItem, AddActivityForm } from "../../components/Activity";
 
 export function Home() {
   const { activities, loading, error } = useHomeData();

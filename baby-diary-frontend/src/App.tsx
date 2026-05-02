@@ -1,4 +1,4 @@
-import { Home } from "./pages/home";
+import { Home } from "./pages/Home";
 import "./App.css";
 import AppProviders from "./context/AppProviders";
 

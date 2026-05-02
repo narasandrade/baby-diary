@@ -8,9 +8,9 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
-import { activitiesService } from "../../services/activity.service";
-import { useActivitiesContext } from "../../hooks/useActivitiesContext";
-import { useNotificationContext } from "../../hooks/useNotificationContext";
+import { activitiesService } from "../../../services/activity.service";
+import { useActivitiesContext } from "../../../hooks/useActivitiesContext";
+import { useNotificationContext } from "../../../hooks/useNotificationContext";
 
 export function DeleteActivityButton({ id }: { id: string }) {
   const { activities, setActivities } = useActivitiesContext();
