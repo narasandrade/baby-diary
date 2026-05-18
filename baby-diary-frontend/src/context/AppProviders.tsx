@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ActivitiesProvider } from "./activities/ActivitiesProvider";
 import { NotificationProvider } from "./notification/NotificationProvider";
+import { Auth0ProviderWithHistory } from "./auth/Auth0ProviderWithHistory";
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -9,7 +10,9 @@ interface AppProvidersProps {
 const AppProviders = ({ children }: AppProvidersProps) => {
   return (
     <NotificationProvider>
-      <ActivitiesProvider>{children}</ActivitiesProvider>
+      <Auth0ProviderWithHistory>
+        <ActivitiesProvider>{children}</ActivitiesProvider>
+      </Auth0ProviderWithHistory>
     </NotificationProvider>
   );
 };
