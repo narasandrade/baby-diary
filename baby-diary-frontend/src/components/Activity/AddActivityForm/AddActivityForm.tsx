@@ -7,6 +7,7 @@ import {
 } from "../../../../../shared/types/activity";
 import { isValidActivity } from "../../../../../shared/utils/utils";
 import {
+  Box,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -14,14 +15,17 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 import { activitiesService } from "../../../services/activity.service";
 import { useActivitiesContext } from "../../../hooks/useActivitiesContext";
 import { useNotificationContext } from "../../../hooks/useNotificationContext";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export function AddActivityForm() {
   const [selected, setSelected] = useState<ActivityType>("FEED");
   const { setActivities } = useActivitiesContext();
   const { setNotify } = useNotificationContext();
+  const { isAuthenticated } = useAuth0();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;
@@ -82,6 +86,27 @@ export function AddActivityForm() {
           Add Activity
         </Button>
       </div>
+
+      {!isAuthenticated && (
+        <Box
+          sx={{
+            padding: 2,
+            marginTop: 2,
+            borderRadius: 4,
+            bgcolor: "info.light",
+            color: "info.contrastText",
+            display: "flex",
+          }}
+        >
+          <InfoIcon sx={{ height: "1rem", width: "1rem", marginTop: 0.5 }} />
+
+          <Typography component="span" sx={{ marginLeft: 1 }}>
+            If you want to save your activities, please make sure to log in
+            first. Otherwise, your activities will not be saved and will be lost
+            when you refresh the page.
+          </Typography>
+        </Box>
+      )}
     </FormControl>
   );
 }
