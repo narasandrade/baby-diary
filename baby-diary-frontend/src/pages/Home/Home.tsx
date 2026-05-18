@@ -1,38 +1,18 @@
-import { Typography } from "@mui/material";
-import type { Activity } from "../../../../shared/types/activity";
-import { useHomeData } from "../../hooks/useHomeData";
-import { ActivityItem, AddActivityForm } from "../../components/Activity";
+import { useAuth0 } from "@auth0/auth0-react";
+import { NavBar } from "../../components/NavBar";
+import { Activities } from "./Activities";
 
 export function Home() {
-  const { activities, loading, error } = useHomeData();
+  const { isLoading } = useAuth0();
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div
-      style={{ display: "grid", gridTemplateColumns: "1fr 20rem", gap: "2rem" }}
-    >
-      <main style={{ display: "flex", justifyContent: "center" }}>
-        <div>
-          <Typography gutterBottom variant="h4">
-            Activities
-          </Typography>
-
-          {activities.length === 0 ? (
-            <p>No activities recorded yet.</p>
-          ) : (
-            <section>
-              {activities.map((activity: Activity) => (
-                <ActivityItem key={activity._id} {...activity} />
-              ))}
-            </section>
-          )}
-        </div>
-      </main>
-      <aside>
-        <AddActivityForm />
-      </aside>
-    </div>
+    <>
+      <NavBar />
+      <Activities />
+    </>
   );
 }
