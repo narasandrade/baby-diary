@@ -1,6 +1,6 @@
 import { Home } from "./pages/Home";
-import "./App.css";
 import AppProviders from "./context/AppProviders";
+import "./App.css";
 
 function App() {
   return (
