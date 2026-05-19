@@ -62,9 +62,11 @@ export function AddActivityForm() {
       <Typography gutterBottom variant="h4">
         Add New Activity
       </Typography>
+
       <FormLabel id="demo-controlled-radio-buttons-group">
         Select the type of activity:
       </FormLabel>
+
       <RadioGroup
         aria-labelledby="demo-controlled-radio-buttons-group"
         name="controlled-radio-buttons-group"
@@ -101,9 +103,8 @@ export function AddActivityForm() {
           <InfoIcon sx={{ height: "1rem", width: "1rem", marginTop: 0.5 }} />
 
           <Typography component="span" sx={{ marginLeft: 1 }}>
-            If you want to save your activities, please make sure to log in
-            first. Otherwise, your activities will not be saved and will be lost
-            when you refresh the page.
+            If you wish to save your activities linked to an email account,
+            please make sure to log in first.
           </Typography>
         </Box>
       )}
