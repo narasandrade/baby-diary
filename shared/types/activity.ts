@@ -1,4 +1,11 @@
-export const ACTIVITY_OPTIONS = ["FEED", "SLEEP", "DIAPER"] as const;
+export const ACTIVITY_OPTIONS = [
+  "Meal",
+  "Bath",
+  "Fell asleep",
+  "Woke up",
+  "Wet diaper",
+  "Dirty diaper",
+] as const;
 
 export type ActivityType = (typeof ACTIVITY_OPTIONS)[number];
 
