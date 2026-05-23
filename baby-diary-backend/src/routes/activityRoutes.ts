@@ -4,16 +4,19 @@ import { validateAccessToken } from "../middleware/auth0.middleware";
 
 const router = express.Router();
 
-// TODO: apply validateAccessToken on requests when a user is logged in.
-// We want to allow unauthenticated users to view, create and delete activities for demonstration purposes,
-// but we will require authentication for these actions if we were to deploy this application in production.
-// Also, if the user wants to save their history, we will need to associate activities with a user,
-// which will require authentication.
+router.use(validateAccessToken);
 
-// router.post("/", validateAccessToken, async (req, res) => {
 router.post("/", async (req, res) => {
   try {
-    const newActivity = new ActivityModel(req.body);
+    let newActivityModel = { ...req.body };
+
+    if (req.auth?.payload?.sub) {
+      newActivityModel = { ...newActivityModel, userId: req.auth.payload.sub };
+    } else {
+      newActivityModel = { ...newActivityModel, userId: null };
+    }
+
+    const newActivity = new ActivityModel(newActivityModel);
 
     await newActivity.save();
 
@@ -23,14 +26,20 @@ router.post("/", async (req, res) => {
   }
 });
 
-// router.get("/", validateAccessToken, async (req, res) => {
 router.get("/", async (req, res) => {
-  const activities = await ActivityModel.find().sort("-createdAt");
+  try {
+    const query = req.auth?.payload?.sub
+      ? { userId: req.auth.payload.sub }
+      : { userId: null };
 
-  res.json(activities);
+    const activities = await ActivityModel.find(query).sort("-createdAt");
+
+    res.status(200).json(activities);
+  } catch (error: any) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
-// router.delete("/:id", validateAccessToken, async (req, res) => {
 router.delete("/:id", async (req, res) => {
   await ActivityModel.findByIdAndDelete(req.params.id);
 

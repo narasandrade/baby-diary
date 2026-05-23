@@ -8,4 +8,5 @@ export interface Activity {
   updatedAt: string;
   type: ActivityType;
   notes?: string;
+  userId?: string;
 }
