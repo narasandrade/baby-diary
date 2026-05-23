@@ -24,7 +24,9 @@ export function Activities() {
           </Typography>
 
           {activities.length === 0 ? (
-            <p>No activities recorded yet.</p>
+            <p>
+              No activities recorded yet. Create a new activity to get started.
+            </p>
           ) : (
             <section>
               {activities.map((activity: Activity) => (
