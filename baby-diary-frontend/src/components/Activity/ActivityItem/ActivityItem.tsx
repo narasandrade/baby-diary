@@ -40,7 +40,14 @@ export function ActivityItem(activity: Activity) {
         sx={{ padding: 1, display: "flex", justifyContent: "space-between" }}
       >
         <div>
-          <Typography gutterBottom sx={{ color: "text.primary", fontSize: 16 }}>
+          <Typography
+            gutterBottom
+            sx={{
+              color: "text.primary",
+              fontSize: 16,
+              fontFamily: "Bad Script",
+            }}
+          >
             {type}
           </Typography>
 

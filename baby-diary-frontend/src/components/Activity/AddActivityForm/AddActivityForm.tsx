@@ -1,13 +1,8 @@
-import Button from "@mui/material/Button";
 import { useState } from "react";
-
-import {
-  ACTIVITY_OPTIONS,
-  type ActivityType,
-} from "../../../../../shared/types/activity";
-import { isValidActivity } from "../../../../../shared/utils/utils";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   Box,
+  Button,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -16,13 +11,18 @@ import {
   Typography,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import {
+  ACTIVITY_OPTIONS,
+  type ActivityType,
+} from "../../../../../shared/types/activity";
+import { isValidActivity } from "../../../../../shared/utils/utils";
+
 import { activitiesService } from "../../../services/activity.service";
 import { useActivitiesContext } from "../../../hooks/useActivitiesContext";
 import { useNotificationContext } from "../../../hooks/useNotificationContext";
-import { useAuth0 } from "@auth0/auth0-react";
 
 export function AddActivityForm() {
-  const [selected, setSelected] = useState<ActivityType>("FEED");
+  const [selected, setSelected] = useState<ActivityType>("Meal");
   const { setActivities } = useActivitiesContext();
   const { setNotify } = useNotificationContext();
   const { isAuthenticated } = useAuth0();
@@ -59,7 +59,7 @@ export function AddActivityForm() {
 
   return (
     <FormControl>
-      <Typography gutterBottom variant="h4">
+      <Typography gutterBottom variant="h4" sx={{ fontFamily: "Bad Script" }}>
         Add New Activity
       </Typography>
 
@@ -79,6 +79,11 @@ export function AddActivityForm() {
             value={option}
             control={<Radio />}
             label={option}
+            slotProps={{
+              typography: {
+                sx: { fontFamily: "Bad Script" },
+              },
+            }}
           />
         ))}
       </RadioGroup>

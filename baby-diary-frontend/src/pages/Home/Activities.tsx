@@ -19,7 +19,11 @@ export function Activities() {
     >
       <main style={{ display: "flex", justifyContent: "center" }}>
         <div>
-          <Typography gutterBottom variant="h4">
+          <Typography
+            gutterBottom
+            variant="h4"
+            sx={{ fontFamily: "Bad Script" }}
+          >
             Activities
           </Typography>
 
