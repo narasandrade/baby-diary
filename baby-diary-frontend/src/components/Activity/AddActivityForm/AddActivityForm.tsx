@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   Box,
-  Button,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -16,12 +15,11 @@ import {
   type ActivityType,
 } from "../../../../../shared/types/activity";
 import { isValidActivityType } from "../../../../../shared/utils/utils";
-import { usePostActivity } from "../../../hooks/usePostActivity";
+import { AddActivityButton } from "../AddActivityButton";
 
 export function AddActivityForm() {
   const [selected, setSelected] = useState<ActivityType>("Meal");
   const { isAuthenticated } = useAuth0();
-  const { mutate, isPending } = usePostActivity();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;
@@ -29,14 +27,6 @@ export function AddActivityForm() {
     if (isValidActivityType(value)) {
       setSelected(value);
     }
-  };
-
-  const handleAddActivity = async () => {
-    const newActivity = {
-      type: selected,
-    };
-
-    mutate(newActivity);
   };
 
   return (
@@ -70,15 +60,7 @@ export function AddActivityForm() {
         ))}
       </RadioGroup>
 
-      <div>
-        <Button
-          variant="contained"
-          onClick={handleAddActivity}
-          disabled={isPending}
-        >
-          Add Activity
-        </Button>
-      </div>
+      <AddActivityButton type={selected} />
 
       {!isAuthenticated && (
         <Box
