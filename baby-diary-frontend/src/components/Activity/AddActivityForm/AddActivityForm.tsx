@@ -15,46 +15,28 @@ import {
   ACTIVITY_OPTIONS,
   type ActivityType,
 } from "../../../../../shared/types/activity";
-import { isValidActivity } from "../../../../../shared/utils/utils";
-
-import { activitiesService } from "../../../services/activity.service";
-import { useActivitiesContext } from "../../../hooks/useActivitiesContext";
-import { useNotificationContext } from "../../../hooks/useNotificationContext";
+import { isValidActivityType } from "../../../../../shared/utils/utils";
+import { usePostActivity } from "../../../hooks/usePostActivity";
 
 export function AddActivityForm() {
   const [selected, setSelected] = useState<ActivityType>("Meal");
-  const { setActivities } = useActivitiesContext();
-  const { setNotify } = useNotificationContext();
   const { isAuthenticated } = useAuth0();
+  const { mutate, isPending } = usePostActivity();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;
 
-    if (isValidActivity(value)) {
+    if (isValidActivityType(value)) {
       setSelected(value);
     }
   };
 
   const handleAddActivity = async () => {
-    try {
-      const newActivity = await activitiesService.create({
-        type: selected,
-      });
+    const newActivity = {
+      type: selected,
+    };
 
-      setActivities((prev) => [newActivity, ...prev]);
-      setNotify({
-        open: true,
-        message: "Activity added successfully!",
-        severity: "success",
-      });
-    } catch (error) {
-      setNotify({
-        open: true,
-        message: "Failed to add activity. Please try again.",
-        severity: "error",
-      });
-      console.log("Error adding activity:", error);
-    }
+    mutate(newActivity);
   };
 
   return (
@@ -89,7 +71,11 @@ export function AddActivityForm() {
       </RadioGroup>
 
       <div>
-        <Button variant="contained" onClick={handleAddActivity}>
+        <Button
+          variant="contained"
+          onClick={handleAddActivity}
+          disabled={isPending}
+        >
           Add Activity
         </Button>
       </div>

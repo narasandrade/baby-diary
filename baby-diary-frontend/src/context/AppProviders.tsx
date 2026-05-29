@@ -1,19 +1,21 @@
 import type { ReactNode } from "react";
-import { ActivitiesProvider } from "./activities/ActivitiesProvider";
 import { NotificationProvider } from "./notification/NotificationProvider";
 import { Auth0ProviderWithConfig } from "./auth/Auth0ProviderWithConfig";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface AppProvidersProps {
   children: ReactNode;
 }
 
 const AppProviders = ({ children }: AppProvidersProps) => {
+  const queryClient = new QueryClient();
+
   return (
-    <NotificationProvider>
-      <Auth0ProviderWithConfig>
-        <ActivitiesProvider>{children}</ActivitiesProvider>
-      </Auth0ProviderWithConfig>
-    </NotificationProvider>
+    <QueryClientProvider client={queryClient}>
+      <NotificationProvider>
+        <Auth0ProviderWithConfig>{children}</Auth0ProviderWithConfig>
+      </NotificationProvider>
+    </QueryClientProvider>
   );
 };
 

@@ -8,43 +8,24 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
-import { activitiesService } from "../../../services/activity.service";
-import { useActivitiesContext } from "../../../hooks/useActivitiesContext";
-import { useNotificationContext } from "../../../hooks/useNotificationContext";
+import { useDeleteActivity } from "../../../hooks/useDeleteActivity";
 
 export function DeleteActivityButton({ id }: { id: string }) {
-  const { activities, setActivities } = useActivitiesContext();
-  const { setNotify } = useNotificationContext();
   const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
+  const { mutate, isPending } = useDeleteActivity();
 
   const handleDeleteActivity = async () => {
-    try {
-      const res = await activitiesService.delete(id);
-
-      setActivities(activities.filter((activity) => activity._id !== id));
-
-      setOpenConfirmationDialog(false);
-
-      setNotify({
-        open: true,
-        message: res.message,
-        severity: "success",
-      });
-    } catch (error) {
-      setNotify({
-        open: true,
-        message: "Activity deletion failed. Please try again.",
-        severity: "error",
-      });
-      console.log("Error deleting activity:", error);
-    }
+    mutate(id);
+    setOpenConfirmationDialog(false);
   };
 
   return (
     <>
       <IconButton
-        aria-label="delete"
+        aria-label="Delete Activity"
         onClick={() => setOpenConfirmationDialog(true)}
+        disabled={isPending}
+        title="Delete Activity"
       >
         <DeleteIcon />
       </IconButton>
@@ -60,10 +41,12 @@ export function DeleteActivityButton({ id }: { id: string }) {
             Delete this activity? This action cannot be undone.
           </DialogContentText>
         </DialogContent>
+
         <DialogActions>
           <Button onClick={() => setOpenConfirmationDialog(false)} autoFocus>
             No
           </Button>
+
           <Button onClick={handleDeleteActivity}>Yes</Button>
         </DialogActions>
       </Dialog>

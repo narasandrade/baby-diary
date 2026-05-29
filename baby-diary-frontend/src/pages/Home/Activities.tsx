@@ -1,13 +1,13 @@
 import { Typography } from "@mui/material";
 import type { Activity } from "../../../../shared/types/activity";
-import { useHomeData } from "../../hooks/useHomeData";
 import { ActivityItem, AddActivityForm } from "../../components/Activity";
+import { useActivities } from "../../hooks/useActivities";
 
 export function Activities() {
-  const { activities, loading, error } = useHomeData();
+  const { activities, isLoading, error } = useActivities();
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div
@@ -27,13 +27,13 @@ export function Activities() {
             Activities
           </Typography>
 
-          {activities.length === 0 ? (
+          {activities?.length === 0 ? (
             <p>
               No activities recorded yet. Create a new activity to get started.
             </p>
           ) : (
             <section>
-              {activities.map((activity: Activity) => (
+              {activities?.map((activity: Activity) => (
                 <ActivityItem key={activity._id} {...activity} />
               ))}
             </section>
