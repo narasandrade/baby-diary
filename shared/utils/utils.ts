@@ -1,5 +1,5 @@
-import { ACTIVITY_OPTIONS, ActivityType } from "../types/activity";
+import { ACTIVITY_OPTIONS, type ActivityType } from "../types/activity";
 
-export const isValidActivity = (value: any): value is ActivityType => {
+export const isValidActivityType = (value: any): value is ActivityType => {
   return ACTIVITY_OPTIONS.includes(value as ActivityType);
 };
