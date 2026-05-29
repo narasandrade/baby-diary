@@ -10,9 +10,9 @@ export function Home() {
   }
 
   return (
-    <>
+    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
       <NavBar />
       <Activities />
-    </>
+    </div>
   );
 }
