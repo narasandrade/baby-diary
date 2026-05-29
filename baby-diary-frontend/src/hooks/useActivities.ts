@@ -28,6 +28,7 @@ export function useActivities() {
   const query = useQuery({
     queryFn: () => fetchActivities(isAuthenticated, getAccessTokenSilently),
     queryKey: ["activities"],
+    refetchOnWindowFocus: true,
   });
 
   return {
