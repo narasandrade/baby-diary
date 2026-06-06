@@ -6,25 +6,8 @@ export function ActivityItem(activity: Activity) {
   const { type, createdAt } = activity;
   const activityTime = new Date(createdAt);
 
-  const displayDate =
-    (activityTime.getDate() < 10
-      ? "0" + activityTime.getDate()
-      : activityTime.getDate()) +
-    "/" +
-    (activityTime.getMonth() < 10
-      ? "0" + (activityTime.getMonth() + 1)
-      : activityTime.getMonth() + 1) +
-    "/" +
-    activityTime.getFullYear();
-
-  const displayTime =
-    (activityTime.getHours() < 10
-      ? "0" + activityTime.getHours()
-      : activityTime.getHours()) +
-    ":" +
-    (activityTime.getMinutes() < 10
-      ? "0" + activityTime.getMinutes()
-      : activityTime.getMinutes());
+  const displayDate = formatDate(createdAt);
+  const displayTime = formatTime(createdAt);
 
   return (
     <Card
