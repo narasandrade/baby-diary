@@ -25,7 +25,7 @@ export function EditActivityNotesButton({ activity }: { activity: Activity }) {
   const handleEditActivity = async () => {
     const newActivity = {
       ...activity,
-      notes: notes.trim() === "" ? undefined : notes.trim(),
+      notes: notes.trim(),
     };
 
     mutate(newActivity);
