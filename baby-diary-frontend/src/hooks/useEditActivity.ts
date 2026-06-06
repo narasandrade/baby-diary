@@ -3,9 +3,8 @@ import type { Activity } from "../../../shared/types/activity";
 import { activitiesService } from "../services/activity.service";
 import { useNotification } from "./useNotification";
 
-const editActivity = async (activity: Activity) => {
-  await activitiesService.update(activity);
-};
+const editActivity = (newActivity: Activity) =>
+  activitiesService.update(newActivity);
 
 export function useEditActivity() {
   const { setNotify } = useNotification();
@@ -14,7 +13,9 @@ export function useEditActivity() {
   const mutation = useMutation({
     mutationFn: editActivity,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["activities"] });
+      queryClient.invalidateQueries({
+        queryKey: ["activities"],
+      });
 
       setNotify({
         open: true,

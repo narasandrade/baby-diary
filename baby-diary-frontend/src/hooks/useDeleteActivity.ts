@@ -2,9 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { activitiesService } from "../services/activity.service";
 import { useNotification } from "./useNotification";
 
-const deleteActivity = async (id: string) => {
-  await activitiesService.delete(id);
-};
+const deleteActivity = (id: string) => activitiesService.delete(id);
 
 export function useDeleteActivity() {
   const { setNotify } = useNotification();

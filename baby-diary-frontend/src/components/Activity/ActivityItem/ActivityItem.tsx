@@ -5,7 +5,7 @@ import { formatDate, formatTime } from "../../../utils/date/dateUtils";
 import { DeleteActivityButton, EditActivityNotesButton } from "../index";
 
 export function ActivityItem(activity: Activity) {
-  const { type, createdAt } = activity;
+  const { type, createdAt, notes } = activity;
   const [truncateNotes, setTruncateNotes] = useState(true);
 
   const displayDate = formatDate(createdAt);
@@ -43,7 +43,7 @@ export function ActivityItem(activity: Activity) {
             {type}
           </Typography>
 
-          {activity.notes && (
+          {notes && (
             <Typography
               gutterBottom
               sx={{
@@ -74,7 +74,7 @@ export function ActivityItem(activity: Activity) {
                 }
               }}
             >
-              {activity.notes}
+              {notes}
             </Typography>
           )}
 

@@ -1,13 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { activitiesService } from "../services/activity.service";
 import type { Activity } from "../../../shared/types/activity";
+import { activitiesService } from "../services/activity.service";
 import { useNotification } from "./useNotification";
 
-const postNewActivity = async (
+const postNewActivity = (
   activity: Omit<Activity, "_id" | "createdAt" | "updatedAt">,
-) => {
-  return await activitiesService.create(activity);
-};
+) => activitiesService.create(activity);
 
 export function usePostActivity() {
   const { setNotify } = useNotification();
