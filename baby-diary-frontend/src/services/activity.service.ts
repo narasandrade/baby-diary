@@ -24,4 +24,12 @@ export const activitiesService = {
 
     return data;
   },
+  async update(data: Partial<Activity>) {
+    const { data: updatedActivity } = await api.put(
+      `/activities/${data._id}`,
+      data,
+    );
+
+    return updatedActivity;
+  },
 };
