@@ -8,6 +8,7 @@ An app to track your baby's routine.
 - React
 - TypeScript
 - SCSS
+- TanStack React Query
 
 ## Tech Stack - Backend
 
