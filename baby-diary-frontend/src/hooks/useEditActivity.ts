@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { Activity } from "../../../shared/types/activity";
-import { activitiesService } from "../services/activity.service";
+import { activitiesService } from "@/services/activity.service";
 import { useNotification } from "./useNotification";
 
 const editActivity = (newActivity: Activity) =>

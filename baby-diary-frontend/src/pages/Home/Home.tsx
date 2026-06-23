@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { NavBar } from "../../components/NavBar";
+import { NavBar } from "@/components";
 import { Activities } from "./Activities";
 
 export function Home() {

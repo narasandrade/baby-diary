@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { activitiesService } from "../services/activity.service";
+import { activitiesService } from "@/services/activity.service";
 import { useNotification } from "./useNotification";
 
 const deleteActivity = (id: string) => activitiesService.delete(id);

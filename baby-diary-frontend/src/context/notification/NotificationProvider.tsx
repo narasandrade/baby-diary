@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
-import { NotificationContext, type Notification } from "./NotificationContext";
 import { Alert, Snackbar } from "@mui/material";
+import { NotificationContext, type Notification } from "./NotificationContext";
 
 interface NotificationProviderProps {
   children: ReactNode;

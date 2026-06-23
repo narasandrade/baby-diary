@@ -1,3 +1,3 @@
-export * from "./LoginButton";
-export * from "./SignUpButton";
-export * from "./LogoutButton";
+export { LoginButton } from "./LoginButton";
+export { SignUpButton } from "./SignUpButton";
+export { LogoutButton } from "./LogoutButton";

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { NotificationProvider } from "./notification/NotificationProvider";
 import { Auth0ProviderWithConfig } from "./auth/Auth0ProviderWithConfig";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface AppProvidersProps {
   children: ReactNode;

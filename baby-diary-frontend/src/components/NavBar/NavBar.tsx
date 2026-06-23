@@ -1,7 +1,7 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoginButton, LogoutButton, SignUpButton } from "../Auth";
-import BabyStrollerIcon from "../../assets/baby-stroller.svg";
+import BabyStrollerIcon from "@/assets/baby-stroller.svg";
+import { LoginButton, LogoutButton, SignUpButton } from "@/components";
 
 export function NavBar() {
   const { isAuthenticated } = useAuth0();

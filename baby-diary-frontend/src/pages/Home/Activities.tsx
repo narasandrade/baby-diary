@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import type { Activity } from "../../../../shared/types/activity";
-import { ActivityItem, AddActivityForm } from "../../components/Activity";
-import { useActivities } from "../../hooks/useActivities";
+import { ActivityItem, AddActivityForm } from "@/components";
+import { useActivities } from "@/hooks";
 
 export function Activities() {
   const { activities, isLoading, error } = useActivities();
