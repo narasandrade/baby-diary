@@ -5,7 +5,7 @@ import { formatDate, formatTime } from "../../../utils/date/dateUtils";
 import { DeleteActivityButton, EditActivityNotesButton } from "../index";
 
 export function ActivityItem(activity: Activity) {
-  const { type, createdAt, notes } = activity;
+  const { type, createdAt, notes, updatedAt } = activity;
   const [truncateNotes, setTruncateNotes] = useState(true);
 
   const displayDate = formatDate(createdAt);
@@ -88,6 +88,14 @@ export function ActivityItem(activity: Activity) {
           <Typography sx={{ color: "text.secondary", fontSize: 12 }}>
             {displayTime}
           </Typography>
+
+          {createdAt !== updatedAt && (
+            <Typography
+              sx={{ color: "text.secondary", fontSize: 12, marginTop: 1 }}
+            >
+              (Edited)
+            </Typography>
+          )}
         </div>
         <div
           style={{
@@ -99,6 +107,7 @@ export function ActivityItem(activity: Activity) {
           }}
         >
           <DeleteActivityButton id={activity._id} />
+
           <EditActivityNotesButton activity={activity} />
         </div>
       </CardContent>
