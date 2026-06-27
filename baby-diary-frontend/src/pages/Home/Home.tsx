@@ -1,6 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { NavBar } from "@/components";
-import { Activities } from "./Activities";
+import { ActivityList, NavBar, Sidebar } from "@/components";
 
 export function Home() {
   const { isLoading } = useAuth0();
@@ -12,7 +11,10 @@ export function Home() {
   return (
     <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
       <NavBar />
-      <Activities />
+      <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
+        <ActivityList />
+        <Sidebar />
+      </div>
     </div>
   );
 }
