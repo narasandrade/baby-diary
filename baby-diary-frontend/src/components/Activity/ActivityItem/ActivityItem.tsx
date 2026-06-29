@@ -48,10 +48,10 @@ export function ActivityItem(activity: Activity) {
               gutterBottom
               sx={{
                 fontSize: 12,
-                background: "aliceblue",
+                background: "action.hover",
                 color: "text.secondary",
                 border: 1,
-                borderColor: "lightblue",
+                borderColor: "divider",
                 borderRadius: 1,
                 padding: 0.5,
                 marginRight: 1,

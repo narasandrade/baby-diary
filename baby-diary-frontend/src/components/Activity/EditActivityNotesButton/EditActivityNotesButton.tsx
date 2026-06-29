@@ -121,7 +121,7 @@ export function EditActivityNotesButton({ activity }: { activity: Activity }) {
               onFocus={handleFocus}
               autoFocus
               sx={{
-                background: "aliceblue",
+                background: "action.hover",
                 color: "text.secondary",
                 borderRadius: 1,
               }}

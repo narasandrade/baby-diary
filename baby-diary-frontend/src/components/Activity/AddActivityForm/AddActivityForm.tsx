@@ -8,6 +8,7 @@ import {
   Radio,
   RadioGroup,
   Typography,
+  useTheme,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import {
@@ -20,6 +21,7 @@ import { AddActivityButton } from "../AddActivityButton";
 export function AddActivityForm() {
   const [selected, setSelected] = useState<ActivityType>("Meal");
   const { isAuthenticated } = useAuth0();
+  const theme = useTheme();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;
@@ -35,9 +37,7 @@ export function AddActivityForm() {
         Add New Activity
       </Typography>
 
-      <FormLabel id="demo-controlled-radio-buttons-group">
-        Select the type of activity:
-      </FormLabel>
+      <FormLabel>Select the type of activity:</FormLabel>
 
       <RadioGroup
         aria-labelledby="demo-controlled-radio-buttons-group"
@@ -71,6 +71,7 @@ export function AddActivityForm() {
             bgcolor: "info.light",
             color: "info.contrastText",
             display: "flex",
+            width: "25rem",
           }}
         >
           <InfoIcon sx={{ height: "1rem", width: "1rem", marginTop: 0.5 }} />

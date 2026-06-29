@@ -1,13 +1,18 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { useAuth0 } from "@auth0/auth0-react";
 import BabyIcon from "@/assets/baby-icon.svg";
-import { LoginButton, LogoutButton, SignUpButton } from "@/components";
+import {
+  LoginButton,
+  LogoutButton,
+  SignUpButton,
+  ThemeModeToggle,
+} from "@/components";
 
 export function NavBar() {
   const { isAuthenticated } = useAuth0();
 
   return (
-    <Box sx={{ flexGrow: 1, marginBottom: 2 }}>
+    <Box>
       <AppBar position="static">
         <Toolbar>
           <Box
@@ -28,6 +33,8 @@ export function NavBar() {
           >
             Baby Diary
           </Typography>
+
+          <ThemeModeToggle />
 
           {!isAuthenticated && (
             <>
