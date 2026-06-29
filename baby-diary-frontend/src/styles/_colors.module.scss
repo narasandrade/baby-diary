@@ -1,0 +1,21 @@
+$light-text: #ffffff;
+$dark-text: #1a1a1a;
+
+$meal: #ff1e3c;
+$bath: #2979ff;
+$fell-asleep: #7c4dff;
+$woke-up: #ffd600;
+$wet-diaper: #00e5ff;
+$dirty-diaper: #00e676;
+
+:export {
+  lightText: $light-text;
+  darkText: $dark-text;
+
+  meal: $meal;
+  bath: $bath;
+  fellAsleep: $fell-asleep;
+  wokeUp: $woke-up;
+  wetDiaper: $wet-diaper;
+  dirtyDiaper: $dirty-diaper;
+}
